@@ -70,15 +70,15 @@ class smarty_lint extends Smarty {
     /**
      * Attempt to compile the file we want to run a lint check on.
      *
-     * @param string  $template
-     * @param string  $resource_name template name
-     * @param string  $cache_id      cache id
-     * @param string  $compile_id    compile id
-     * @param string  $content       cached content
-     * @param integer &$timestamp    cached timestamp (epoch)
-     * @param string  $resource_uid  resource's uid
+     * @param string $template          the resource handle of the template file or template object
+     * @param mixed  $cache_id          cache id to be used with this template
+     * @param mixed  $compile_id        compile id to be used with this template
+     * @param object $parent            next higher level of Smarty variables
+     * @param bool   $display           true: display, false: fetch
+     * @param bool   $merge_tpl_vars    if true parent template variables merged in to local scope
+     * @param bool   $no_output_filter  if true do not run output filter
      */
-    public function fetch($template, $resource_name=null, $cache_id=null, $compile_id=null, &$content=null, &$timestamp=null, $resource_uid=null) {
+    public function fetch($template, $cache_id=null, $compile_id=null, $parent=null, $display=false, $merge_tpl_vars=true, $no_output_filter=false) {
         try {
             self::$lint_file = $template;
             parent::fetch($template, null, null, false);
