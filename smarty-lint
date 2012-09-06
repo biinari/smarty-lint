@@ -81,7 +81,7 @@ class smarty_lint extends Smarty {
     public function fetch($template, $cache_id=null, $compile_id=null, $parent=null, $display=false, $merge_tpl_vars=true, $no_output_filter=false) {
         try {
             self::$lint_file = $template;
-            parent::fetch($template, null, null, false);
+            parent::fetch($template, $cache_id, $compile_id, $parent, $display, $merge_tpl_vars, $no_output_filter);
             $this->remove_compiled_template($template);
         } catch (SmartyCompilerException $e) {
             self::$lint_errors[] = array(
