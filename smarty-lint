@@ -70,9 +70,15 @@ class smarty_lint extends Smarty {
     /**
      * Attempt to compile the file we want to run a lint check on.
      *
-     * @param string $template
+     * @param string  $template
+     * @param string  $resource_name template name
+     * @param string  $cache_id      cache id
+     * @param string  $compile_id    compile id
+     * @param string  $content       cached content
+     * @param integer &$timestamp    cached timestamp (epoch)
+     * @param string  $resource_uid  resource's uid
      */
-    public function fetch($template) {
+    public function fetch($template, $resource_name=null, $cache_id=null, $compile_id=null, &$content=null, &$timestamp=null, $resource_uid=null) {
         try {
             self::$lint_file = $template;
             parent::fetch($template, null, null, false);
